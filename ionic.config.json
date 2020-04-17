@@ -1,0 +1,7 @@
+{
+  "name": "frontent-market",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
