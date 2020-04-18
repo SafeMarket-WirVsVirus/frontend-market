@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar text-center>
+    <ion-title>Mitarbeiter Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+TODO: Content here
+<form [formGroup]="loginFormGroup" (submit)="onSubmit()">
+  <ion-input placeholder="Lokation" autocomplete="off" inputmode="text" formControlName="location"></ion-input>
+  <ion-input placeholder="Benutzername" autocomplete="off" inputmode="text" formControlName="username"></ion-input>
+  <ion-input placeholder="Password" autocomplete="off" type="password" formControlName="password"></ion-input>
+  <ion-button color="primary" expand="full" type="submit" [disabled]="!loginFormGroup.valid">Login</ion-button>
+</form>
+</ion-content>
