@@ -30,7 +30,7 @@ export class LoginpageOwnerPage implements OnInit {
     ).subscribe(response => {
       if (response.success) {
         // TODO
-        // this.router.navigateByUrl();
+        this.router.navigateByUrl('/owner');
       } else if (response.error) {
         // TODO: Errorhandling
       }

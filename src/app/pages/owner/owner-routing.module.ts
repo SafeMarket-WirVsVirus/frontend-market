@@ -1,36 +1,36 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { LoginPage } from './login.page';
+import { OwnerPage } from './owner.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: LoginPage,
+    component: OwnerPage,
     children: [
       {
-        path: 'tab-clerk',
+        path: 'tab-branch',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('./loginpage-clerk/loginpage-clerk.module').then(m => m.LandingpageClerkPageModule)
+              import('./branch/branch.module').then(m => m.BranchPageModule)
           }
         ]
         },
         {
-          path: 'tab-owner',
+          path: 'tab-profile',
           children: [
             {
               path: '',
               loadChildren: () =>
-                import('./loginpage-owner/loginpage-owner.module').then(m => m.LandingpageOwnerPageModule)
+                import('./profile/profile.module').then(m => m.ProfilePageModule)
             }
           ]
         },
         {
           path: '',
-          redirectTo: '/login/tab-clerk',
+          redirectTo: '/owner/tab-branch',
           pathMatch: 'full'
         }
     ]
@@ -41,4 +41,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class LoginPageRoutingModule {}
+export class OwnerPageRoutingModule {}
