@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { SecretsPageRoutingModule } from './secrets-routing.module';
 
 import { SecretsPage } from './secrets.page';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SecretsPageRoutingModule
+    SecretsPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [SecretsPage]
 })

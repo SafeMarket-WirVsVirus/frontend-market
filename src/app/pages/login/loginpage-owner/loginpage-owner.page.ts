@@ -29,7 +29,8 @@ export class LoginpageOwnerPage implements OnInit {
       this.loginFormGroup.get('password').value,
     ).subscribe(response => {
       if (response.success) {
-        // TODO
+        this.loginFormGroup.get('username').setValue('');
+        this.loginFormGroup.get('password').setValue('');
         this.router.navigateByUrl('/owner');
       } else if (response.error) {
         // TODO: Errorhandling

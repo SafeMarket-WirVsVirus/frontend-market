@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { UtilizationPageRoutingModule } from './utilization-routing.module';
 
 import { UtilizationPage } from './utilization.page';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    UtilizationPageRoutingModule
+    UtilizationPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [UtilizationPage]
 })

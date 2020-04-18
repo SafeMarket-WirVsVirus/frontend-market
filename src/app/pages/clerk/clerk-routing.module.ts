@@ -22,7 +22,7 @@ const routes: Routes = [
           path: 'tab-secrets',
           children: [
             {
-              path: 'secrets',
+              path: '',
               loadChildren: () =>
                 import('./secrets/secrets.module').then( m => m.SecretsPageModule)
             }
@@ -32,7 +32,7 @@ const routes: Routes = [
           path: 'tab-utilization',
           children: [
             {
-              path: 'utilization',
+              path: '',
               loadChildren: () =>
                 import('./utilization/utilization.module').then( m => m.UtilizationPageModule)
             }

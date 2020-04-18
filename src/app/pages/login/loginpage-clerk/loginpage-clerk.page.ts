@@ -33,6 +33,9 @@ export class LoginpageClerkPage implements OnInit {
       this.loginFormGroup.get('password').value,
     ).subscribe(response => {
       if (response.success) {
+        this.loginFormGroup.get('location').setValue('');
+        this.loginFormGroup.get('username').setValue('');
+        this.loginFormGroup.get('password').setValue('');
         this.router.navigateByUrl('/clerk');
       } else if (response.error) {
         // TODO: Errorhandling
