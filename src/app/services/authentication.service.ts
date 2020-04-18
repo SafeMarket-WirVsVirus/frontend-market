@@ -11,6 +11,15 @@ export interface AuthResponse {
   error?: Error;
 }
 
+export interface SignupOwnerInputModel {
+  name: string;
+  lastName: string;
+  password: string;
+  company: string;
+  email: string;
+  phone?: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -58,6 +67,16 @@ export class AuthenticationService {
 
     // TODO: Mocked. Replace with actual implementation
     this.userType = UserType.Owner;
+    return of({success: true});
+  }
+
+  /**
+   * Registeres a new owner
+   * @param owner: SignupOwnerInputModel
+   */
+  signupOwner(owner: SignupOwnerInputModel): Observable<AuthResponse> {
+
+    // TODO: Mocked. Replace with actual implementation
     return of({success: true});
   }
 

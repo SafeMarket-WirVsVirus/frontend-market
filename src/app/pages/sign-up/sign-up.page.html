@@ -1,0 +1,26 @@
+<ion-header>
+  <app-header headerTitle="Profil Anlegen" [enableLogout]="false" [enableBackNavigation]="true"></app-header>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="signupFormGroup" (submit)="onSubmit()">
+
+    <ion-input placeholder="Vorname*" autocomplete="off" inputmode="text" formControlName="firstName"></ion-input>
+    <ion-input placeholder="Nachname*" autocomplete="off" type="text" formControlName="lastName"></ion-input>
+    <ion-input placeholder="Password*" autocomplete="off" type="text" formControlName="password1"></ion-input>
+    <ion-input placeholder="Password wiederholen*" autocomplete="off" type="text" formControlName="password2"></ion-input>
+
+    <br>
+
+    <ion-input placeholder="Firma*" autocomplete="off" type="text" formControlName="company"></ion-input>
+
+    <br>
+
+    <ion-input placeholder="Email*" autocomplete="off" type="text" formControlName="email"></ion-input>
+    <ion-input placeholder="Telefon" autocomplete="off" type="text" formControlName="phone"></ion-input>
+    <span>* Pflichteingabe</span>
+
+    <br>
+    <ion-button color="primary" expand="full" type="submit" [disabled]="!signupFormGroup.valid">Profil Anlegen</ion-button>
+  </form>
+</ion-content>
