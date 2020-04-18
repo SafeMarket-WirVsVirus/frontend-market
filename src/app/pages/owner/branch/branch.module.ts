@@ -7,12 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { BranchPageRoutingModule } from './branch-routing.module';
 
 import { BranchPage } from './branch.page';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    ComponentsModule,
     BranchPageRoutingModule
   ],
   declarations: [BranchPage]

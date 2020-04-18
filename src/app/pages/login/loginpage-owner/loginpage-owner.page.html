@@ -9,6 +9,8 @@
   <form [formGroup]="loginFormGroup" (submit)="onSubmit()">
     <ion-input placeholder="Benutzername" autocomplete="off" inputmode="text" formControlName="username"></ion-input>
     <ion-input placeholder="Password" autocomplete="off" type="password" formControlName="password"></ion-input>
+    <br>
     <ion-button color="primary" expand="full" type="submit" [disabled]="!loginFormGroup.valid">Login</ion-button>
   </form>
+  <a routerLink="/sign-up">Noch keinen Account? Hier registrieren...</a>
 </ion-content>
