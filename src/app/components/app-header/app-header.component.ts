@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 export class AppHeaderComponent implements OnInit {
 
   @Input() headerTitle: string;
+  @Input() enableBackNavigation: boolean = false;
+  @Input() enableLogout: boolean = true;
 
   constructor(private authService: AuthenticationService, private router: Router) { }
 

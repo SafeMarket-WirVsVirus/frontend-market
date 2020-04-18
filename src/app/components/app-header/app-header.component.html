@@ -1,5 +1,8 @@
 <ion-toolbar>
-  <ion-buttons slot="primary">
+  <ion-buttons slot="start" *ngIf="enableBackNavigation === true">
+    <ion-back-button></ion-back-button>
+  </ion-buttons>
+  <ion-buttons slot="primary" *ngIf="enableLogout === true">
     <ion-button color="primary" (click)="logOut($event)">
       <ion-icon slot="icon-only" name="log-out"></ion-icon>
     </ion-button>
