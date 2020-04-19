@@ -20,7 +20,6 @@ export class AppHeaderComponent implements OnInit {
   logOut(sender) {
     sender.preventDefault();
     this.authService.logout().subscribe(() => {
-      console.log("HEre2")
       this.router.navigateByUrl('/');
     });
   }

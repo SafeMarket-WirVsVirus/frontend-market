@@ -2,6 +2,43 @@
   <app-header headerTitle="Meine Filialen"></app-header>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
 
+  <ion-card *ngFor="let branch of branchEntries" color="light">
+    <ion-card-content class="card-content-container">
+
+      <ion-card-subtitle>
+        <span class="branch-state" [class.low]="branch.utilization == BranchUtilization.Low" [class.medium]="branch.utilization == BranchUtilization.Medium" [class.high]="branch.utilization == BranchUtilization.High"></span>
+        <span class="card-title">{{branch.name}}</span>
+      </ion-card-subtitle>
+
+      <div>
+        <div>
+          Mitarbeiter: {{branch.clerkCount}}
+        </div>
+        <div>
+          Auslastung: {{branch.currentUtilization}} / {{ branch.maxUtilization }}
+        </div>
+      </div>
+
+      <div class="button-container">
+        <ion-button fill="clear" (click)="onViewClerks($event, branch)">
+          <ion-icon slot="icon-only" name="people"></ion-icon>
+        </ion-button>
+        <ion-button fill="clear" (click)="onViewBranch($event, branch)">
+          <ion-icon slot="icon-only" name="eye"></ion-icon>
+        </ion-button>
+        <ion-button fill="clear" (click)="onMessages($event, branch)">
+          <ion-icon slot="icon-only" name="document-text"></ion-icon>
+        </ion-button>
+        <ion-button fill="clear" (click)="onEdit($event, branch)">
+          <ion-icon slot="icon-only" name="pencil"></ion-icon>
+        </ion-button>
+      </div>
+    </ion-card-content>
+    
+  </ion-card>
+  <ion-button fill="clear" (click)="onAddBranch($event)">
+    <ion-icon name="add-outline"></ion-icon> weitere Filiale hinzufügen
+  </ion-button>
 </ion-content>

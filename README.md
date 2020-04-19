@@ -31,3 +31,4 @@ Make sure, that no old versions of the ionic-cli are installed.
 - Use `ionic g page page/...` to add a new page
     - Make sure to place the routing-entry in the right context to keep a proper route-structure
 - Use `ionic g service service/...` to add a new service
+- You can change the theme from dark to light by changing this line `@media (prefers-color-scheme: dark) {` in variables.css

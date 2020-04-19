@@ -1,0 +1,14 @@
+<ion-header>
+  <app-header [headerTitle]="pageState == PageState.Add ? 'Neue Filiale anlegen' : 'Filiale bearbeiten'" [enableBackNavigation]="true"></app-header>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ng-container *ngIf="pageState == PageState.Add">
+    TODO: Add Mode
+  </ng-container>
+
+  <ng-container *ngIf="pageState == PageState.Edit">
+    TODO: Edit Mode
+  </ng-container>
+</ion-content>
