@@ -3,42 +3,70 @@
 </ion-header>
 
 <ion-content class="ion-padding">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content>
+    </ion-refresher-content>
+  </ion-refresher>  
 
-  <ion-card *ngFor="let branch of branchEntries" color="light">
-    <ion-card-content class="card-content-container">
+  <ion-list>
 
-      <ion-card-subtitle>
-        <span class="branch-state" [class.low]="branch.utilization == BranchUtilization.Low" [class.medium]="branch.utilization == BranchUtilization.Medium" [class.high]="branch.utilization == BranchUtilization.High"></span>
-        <span class="card-title">{{branch.name}}</span>
-      </ion-card-subtitle>
+    <ng-container *ngFor="let branch of branchEntries | async">
+      <ion-item-sliding>
+        <ion-item class="card-content-container">
 
-      <div>
-        <div>
-          Mitarbeiter: {{branch.clerkCount}}
-        </div>
-        <div>
-          Auslastung: {{branch.currentUtilization}} / {{ branch.maxUtilization }}
-        </div>
-      </div>
+          <ion-grid>
+            <ion-row>
+              <ion-col size="12">
+                <span class="branch-state" [class.low]="branch.utilization == BranchUtilization.Low" [class.medium]="branch.utilization == BranchUtilization.Medium" [class.high]="branch.utilization == BranchUtilization.High"></span>
+                <span class="card-title">{{branch.name}}</span>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="12">
+                Mitarbeiter: {{branch.clerkCount}}
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="12">
+                Auslastung: {{branch.currentUtilization}} / {{ branch.maxUtilization }}
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="3">
+                <ion-button fill="clear" (click)="onViewClerks($event, branch)">
+                  <ion-icon slot="icon-only" name="people"></ion-icon>
+                </ion-button>
+              </ion-col>
+              <ion-col size="3">
+                <ion-button fill="clear" (click)="onViewBranch($event, branch)">
+                  <ion-icon slot="icon-only" name="eye"></ion-icon>
+                </ion-button>
+              </ion-col>
+              <ion-col size="3">
+                <ion-button fill="clear" (click)="onMessages($event, branch)">
+                  <ion-icon slot="icon-only" name="document-text"></ion-icon>
+                </ion-button>
+              </ion-col>
+              <ion-col size="3">
+                <ion-button fill="clear" (click)="onEdit($event, branch)">
+                  <ion-icon slot="icon-only" name="pencil"></ion-icon>
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
 
-      <div class="button-container">
-        <ion-button fill="clear" (click)="onViewClerks($event, branch)">
-          <ion-icon slot="icon-only" name="people"></ion-icon>
-        </ion-button>
-        <ion-button fill="clear" (click)="onViewBranch($event, branch)">
-          <ion-icon slot="icon-only" name="eye"></ion-icon>
-        </ion-button>
-        <ion-button fill="clear" (click)="onMessages($event, branch)">
-          <ion-icon slot="icon-only" name="document-text"></ion-icon>
-        </ion-button>
-        <ion-button fill="clear" (click)="onEdit($event, branch)">
-          <ion-icon slot="icon-only" name="pencil"></ion-icon>
-        </ion-button>
-      </div>
-    </ion-card-content>
-    
-  </ion-card>
+        </ion-item>
+
+        <ion-item-options side="end">
+          <ion-item-option color="danger" (click)="deleteBranch($event, branch.id)">Löschen</ion-item-option>
+        </ion-item-options>
+        
+      </ion-item-sliding>
+    </ng-container>
+  </ion-list> 
+
   <ion-button fill="clear" (click)="onAddBranch($event)">
     <ion-icon name="add-outline"></ion-icon> weitere Filiale hinzufügen
   </ion-button>
+
 </ion-content>

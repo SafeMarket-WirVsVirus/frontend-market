@@ -1,14 +1,130 @@
 <ion-header>
-  <app-header [headerTitle]="pageState == PageState.Add ? 'Neue Filiale anlegen' : 'Filiale bearbeiten'" [enableBackNavigation]="true"></app-header>
+  <app-header [headerTitle]="title" [enableBackNavigation]="true"></app-header>
 </ion-header>
 
 <ion-content class="ion-padding">
+  <ng-container [ngSwitch]="pageState">
 
-  <ng-container *ngIf="pageState == PageState.Add">
-    TODO: Add Mode
-  </ng-container>
+    <div *ngSwitchCase="PageState.Stage1">
+      <span class="step-title">Schritt 1 von 3</span>
+      <div class="sub-title">Adresse</div>
 
-  <ng-container *ngIf="pageState == PageState.Edit">
-    TODO: Edit Mode
+      <form [formGroup]="stage1FormGroup" (submit)="pageState = PageState.Stage2">
+
+        <ion-item>
+          <ion-label position="floating">Filiale*</ion-label>
+          <ion-input autocomplete="off" type="text" formControlName="branchName"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Straße*</ion-label>
+          <ion-input autocomplete="off" type="text" formControlName="street"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Postleitzahl*</ion-label>
+          <ion-input autocomplete="off" type="text" formControlName="postCode"></ion-input>
+        </ion-item>
+    
+        <br>
+        <div class="single-button-container">
+          <ion-button color="primary" type="submit" [disabled]="!stage1FormGroup.valid">Weiter</ion-button>
+        </div>
+      </form>
+
+    </div>
+
+    <div *ngSwitchCase="PageState.Stage2">
+      <div class="step-title">Schritt 2 von 3</div>
+      <div class="sub-title">Öffnungszeiten</div>
+
+      
+      <ion-list  lines="none" details="none" class="weekdays" no-padding>
+        <ng-container *ngFor="let weekday of weekSections; let idx = index;">
+
+          <ion-item tappable (click)="toggleWeekday(idx)" class="week" [ngClass]="{'week-active': weekday.open}">
+            <ion-icon slot="end" name="caret-up-outline" *ngIf="!weekday.open"></ion-icon>
+            <ion-icon slot="end" name="caret-down-outline" *ngIf="weekday.open"></ion-icon>
+            <ion-label>
+              {{ weekday.name }}
+            </ion-label>
+          </ion-item>
+          
+          <div *ngIf="weekday.open">
+            <ion-list lines="none" class="timeslots">
+              <ng-container *ngFor="let slot of weekday.timeslots; let slotIdx = index;">
+                <ion-item-sliding>
+                  <ion-item>
+                    <ion-datetime class="datetime-element" displayFormat="HH:mm" [(ngModel)]="slot.from"></ion-datetime>
+                    bis
+                    <ion-datetime class="datetime-element" displayFormat="HH:mm" [(ngModel)]="slot.to"></ion-datetime>
+                  </ion-item>
+                  <ion-item-options side="end">
+                    <ion-item-option color="danger" (click)="deleteTimeslot($event, idx, slotIdx)">Löschen</ion-item-option>
+                  </ion-item-options>
+                </ion-item-sliding>
+              </ng-container>
+
+              <ion-button fill="clear" (click)="onAddTimeslot($event, idx)">
+                <ion-icon name="add-outline"></ion-icon> weitere Zeit hinzufügen
+              </ion-button>
+            </ion-list>
+          </div>
+
+        </ng-container>
+      </ion-list>
+      
+      <div class="two-button-container">
+        <ion-button color="secondary" (click)="pageState = PageState.Stage1">Zurück</ion-button>
+        <ion-button color="primary" (click)="pageState = PageState.Stage3">Weiter</ion-button>
+      </div>
+
+    </div>
+
+    <div *ngSwitchCase="PageState.Stage3">
+      <span class="step-title">Schritt 3 von 3</span>
+      <div class="sub-title">Kapazitäten</div>
+
+      <form [formGroup]="stage3FormGroup" (submit)="onSaveChanges()">
+        <ion-card color="light">
+          <ion-card-content>
+            Wie viele Personen sollen max. gleichzeitig im Laden sein?
+            <br>
+            <div class="input-small">
+              <ion-input autocomplete="off" placeholder="Anzahl" min="1" type="number" formControlName="maxUtilization"></ion-input>
+            </div>
+            <span>Personen</span>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card color="light">
+          <ion-card-content>
+            Wie lange braucht ein Kunde durchschnittlich für einen Einkauf?
+            <br>
+            <div class="input-small">
+              <ion-input autocomplete="off" placeholder="Zeit" min="1" type="number" formControlName="maxDuration"></ion-input>
+            </div>
+            <span>Minuten</span>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card color="light">
+          <ion-card-content>
+            Wieviel Laufkundschaft möchten Sie?
+            <br>
+            <div class="input-small">
+              <ion-input autocomplete="off" placeholder="Anzahl" min="1" [max]="'10'" type="number" formControlName="maxReservations"></ion-input>
+            </div>
+            <span>Personen</span>
+          </ion-card-content>
+        </ion-card>
+
+        <div class="two-button-container">
+          <ion-button color="secondary" (click)="pageState = PageState.Stage2">Zurück</ion-button>
+          <ion-button color="primary" type="submit">Speichern</ion-button>
+        </div>
+      </form>
+    </div>
+
   </ng-container>
 </ion-content>

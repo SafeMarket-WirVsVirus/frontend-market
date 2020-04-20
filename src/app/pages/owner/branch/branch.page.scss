@@ -2,16 +2,6 @@
 //     position: relative;
 // }
 .card-content-container {
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: stretch;
-    justify-content: space-between;
-
-    .button-container {
-        display: flex;
-        flex-flow: row nowrap;
-        margin-top: 15px;
-    }
 
     .card-title {
         display: inline-block;

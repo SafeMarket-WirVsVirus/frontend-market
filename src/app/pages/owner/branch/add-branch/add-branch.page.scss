@@ -1,0 +1,40 @@
+.step-title {
+    color: var(--ion-color-secondary);
+}
+
+.sub-title {}
+
+.weekdays {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    
+    .week {
+        --ion-item-background: var(--ion-color-primary);
+        --ion-item-color: var(--ion-color-primary-contrast);
+        margin-bottom: 2px;
+    }
+
+    .week-active {
+        --ion-item-background: var(--ion-color-secondary);
+        --ion-item-color: var(--ion-color-secondary-contrast);
+    }
+}
+
+.single-button-container {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.two-button-container {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.input-small {
+    width: 25%;
+    display: inline-block;
+}

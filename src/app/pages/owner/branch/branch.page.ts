@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-
-export enum BranchUtilization {
-  High = 3,
-  Medium = 2,
-  Low = 1
-}
+import { BranchUIModelInterface, BranchUtilization } from 'src/app/services/ui-models/branch-ui-model';
+import { Observable } from 'rxjs';
+import { BackendMarketService } from 'src/app/services/backend-market.service';
+import { map, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-branch',
@@ -14,35 +12,27 @@ export enum BranchUtilization {
 })
 export class BranchPage implements OnInit {
   BranchUtilization = BranchUtilization;
+  public branchEntries: Observable<BranchUIModelInterface[]>;
 
-  // TODO: Mock. Fill with service call
-  public branchEntries = [
-    {
-      name: 'REWE Göttingen',
-      clerkCount: 5,
-      maxUtilization: 80,
-      currentUtilization: 70,
-      utilization: BranchUtilization.High
-    },
-    {
-      name: 'REWE Göt. Süd',
-      clerkCount: 5,
-      maxUtilization: 60,
-      currentUtilization: 30,
-      utilization: BranchUtilization.Medium
-    },
-    {
-      name: 'REWE Neustatt',
-      clerkCount: 5,
-      maxUtilization: 30,
-      currentUtilization: 5,
-      utilization: BranchUtilization.Low
-    }
-  ];
-
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  constructor(private router: Router, private route: ActivatedRoute, private marketService: BackendMarketService) { }
 
   ngOnInit() {
+    // TODO: Must store OwnerID somewhere and pass it to the method
+    this.branchEntries = this.marketService.getBranches();
+    this.route.paramMap.pipe(map(() => window.history.state)).subscribe((state) => {
+      if (state.reload) {
+        this.branchEntries = this.marketService.getBranches();
+      }
+    });
+  }
+
+  doRefresh(event) {
+    this.branchEntries = this.marketService.getBranches().pipe(
+      map((res) => {
+        event.target.complete();
+        return res;
+      })
+    );
   }
 
   onViewClerks(sender, branch) {
@@ -68,5 +58,10 @@ export class BranchPage implements OnInit {
   onAddBranch(sender) {
     sender.preventDefault();
     this.router.navigate(['add-branch'], { relativeTo: this.route });
+  }
+
+  deleteBranch(sender, id) {
+    sender.preventDefault();
+    this.marketService.deleteBranch(id);
   }
 }
