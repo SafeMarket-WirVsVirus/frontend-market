@@ -57,9 +57,11 @@ const mockedBranches: BranchUIModelInterface[] = [
     maxReservations: 10,
     maxDuration: 15,
     utilization: BranchUtilization.High,
+    messages: 'Kein Klopapier mehr!!!',
     address: {
       street: 'This street 5',
-      postcode: '12345'
+      postcode: '12345',
+      city: 'Sample City',
     },
     openingTimes: {
       monday: [
@@ -115,9 +117,11 @@ const mockedBranches: BranchUIModelInterface[] = [
     maxReservations: 10,
     maxDuration: 15,
     utilization: BranchUtilization.Medium,
+    messages: 'Kein Klopapier mehr!!!',
     address: {
       street: 'This street 5',
-      postcode: '12345'
+      postcode: '12345',
+      city: 'Sample City',
     },
     openingTimes: {
       monday: [
@@ -201,9 +205,11 @@ const mockedBranches: BranchUIModelInterface[] = [
     maxReservations: 10,
     maxDuration: 15,
     utilization: BranchUtilization.Low,
+    messages: 'Kein Klopapier mehr!!!',
     address: {
       street: 'This street 5',
-      postcode: '12345'
+      postcode: '12345',
+      city: 'Sample City',
     },
     openingTimes: {
       monday: [
@@ -250,4 +256,4 @@ const mockedBranches: BranchUIModelInterface[] = [
       ]
     }
   }),
-]
+];

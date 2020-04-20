@@ -53,6 +53,9 @@ export class AddBranchPage implements OnInit {
     postCode: new FormControl('', [
       Validators.required
     ]),
+    city: new FormControl('', [
+      Validators.required
+    ]),
   });
 
   constructor(private route: ActivatedRoute, private router: Router, private marketService: BackendMarketService) { }
@@ -123,9 +126,11 @@ export class AddBranchPage implements OnInit {
       maxReservations: this.stage3FormGroup.get('maxReservations').value,
       maxDuration: this.stage3FormGroup.get('maxDuration').value,
       utilization: this.activeBranch.utilization, // Might be removed with mock
+      messages: this.activeBranch.messages, // Might be removed with mock
       address: {
         street: this.stage1FormGroup.get('street').value,
-        postcode: this.stage1FormGroup.get('postCode').value
+        postcode: this.stage1FormGroup.get('postCode').value,
+        city: this.stage1FormGroup.get('city').value,
       },
       openingTimes: {
         monday: this.weekSections[0].timeslots,

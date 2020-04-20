@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
+import { BranchUIModelInterface } from 'src/app/services/ui-models/branch-ui-model';
 
 @Component({
   selector: 'app-view-messages',
@@ -9,7 +10,7 @@ import { map } from 'rxjs/operators';
 })
 export class ViewMessagesPage implements OnInit {
 
-  public activeBranch; // TODO: Infer actual type
+  public activeBranch: BranchUIModelInterface;
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -17,5 +18,4 @@ export class ViewMessagesPage implements OnInit {
       this.activeBranch = state;
     }));
   }
-
 }

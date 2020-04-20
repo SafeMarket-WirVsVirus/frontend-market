@@ -3,4 +3,57 @@
 </ion-header>
 
 <ion-content class="ion-padding">
+
+  <ion-card color="light">
+    <ion-card-header>
+      <ion-card-subtitle>Adresse</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      {{ activeBranch.name}}
+      <br>
+      {{ activeBranch.address.street }}
+      <br>
+      {{ activeBranch.address.postcode }} {{ activeBranch.address.city }}
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card color="light">
+    <ion-card-header>
+      <ion-card-subtitle>Öffnungszeiten</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <app-open-time-view title="Montag" [openingTimes]="activeBranch.openingTimes.monday"></app-open-time-view>
+        <app-open-time-view title="Dienstag" [openingTimes]="activeBranch.openingTimes.tuesday"></app-open-time-view>
+        <app-open-time-view title="Mittwoch" [openingTimes]="activeBranch.openingTimes.wednesday"></app-open-time-view>
+        <app-open-time-view title="Donnerstag" [openingTimes]="activeBranch.openingTimes.thursday"></app-open-time-view>
+        <app-open-time-view title="Freitag" [openingTimes]="activeBranch.openingTimes.friday"></app-open-time-view>
+        <app-open-time-view title="Samstag" [openingTimes]="activeBranch.openingTimes.saturday"></app-open-time-view>
+        <app-open-time-view title="Sonntag" [openingTimes]="activeBranch.openingTimes.sunday"></app-open-time-view>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card color="light">
+    <ion-card-header>
+      <ion-card-subtitle>Kapazitäten</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      Maximale personen im Laden: {{ activeBranch.maxUtilization }}
+      <br>
+      Durchschnittliche Einkaufslänge: {{ activeBranch.maxDuration }}
+      <br>
+      Reservierte Tickets/Laufkundschaft: {{ activeBranch.maxReservations }}
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card color="light">
+    <ion-card-header>
+      <ion-card-subtitle>Nachrichten</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      {{ activeBranch.messages }}
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>

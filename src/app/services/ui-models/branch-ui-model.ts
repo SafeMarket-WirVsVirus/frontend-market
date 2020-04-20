@@ -9,6 +9,7 @@ export enum BranchUtilization {
 export interface BranchAddress {
     street: string;
     postcode: string;
+    city: string;
 }
 
 export interface BranchTimeSlot {
@@ -36,6 +37,7 @@ export interface BranchUIModelInterface {
     maxReservations: number;
     maxDuration: number;
     utilization: BranchUtilization;
+    messages: string;
     address: BranchAddress;
     openingTimes: BranchWeekDays;
 }
@@ -50,6 +52,7 @@ export class BranchUIModel implements BranchUIModelInterface {
     maxReservations: number;
     maxDuration: number;
     utilization: BranchUtilization;
+    messages: string;
     address: BranchAddress;
     openingTimes: BranchWeekDays;
 
@@ -63,6 +66,7 @@ export class BranchUIModel implements BranchUIModelInterface {
         this.maxReservations = model.maxReservations;
         this.maxDuration = model.maxDuration;
         this.utilization = model.utilization;
+        this.messages = model.messages;
         this.address = model.address;
         this.openingTimes = model.openingTimes;
     }
@@ -76,9 +80,11 @@ export class BranchUIModel implements BranchUIModelInterface {
             maxReservations: 0,
             maxDuration: 0,
             utilization: BranchUtilization.Low,
+            messages: '',
             address: {
                 street: '',
-                postcode: ''
+                postcode: '',
+                city: '',
             },
             openingTimes: {
                 monday: [],
