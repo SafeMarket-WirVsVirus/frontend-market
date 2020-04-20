@@ -5,20 +5,48 @@
 <ion-content class="ion-padding">
   <form [formGroup]="signupFormGroup" (submit)="onSubmit()">
 
-    <ion-input placeholder="Vorname*" autocomplete="off" inputmode="text" formControlName="firstName"></ion-input>
-    <ion-input placeholder="Nachname*" autocomplete="off" type="text" formControlName="lastName"></ion-input>
-    <ion-input placeholder="Password*" autocomplete="off" type="text" formControlName="password1"></ion-input>
-    <ion-input placeholder="Password wiederholen*" autocomplete="off" type="text" formControlName="password2"></ion-input>
+
+    <ion-item>
+      <ion-label position="floating">Vorname*</ion-label>
+      <ion-input autocomplete="off" inputmode="text" formControlName="firstName"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Nachname*</ion-label>
+      <ion-input autocomplete="off" type="text" formControlName="lastName"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Password*</ion-label>
+      <ion-input autocomplete="off" type="text" formControlName="password1"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Password wiederholen*</ion-label>
+      <ion-input autocomplete="off" type="text" formControlName="password2"></ion-input>
+    </ion-item>
 
     <br>
 
-    <ion-input placeholder="Firma*" autocomplete="off" type="text" formControlName="company"></ion-input>
+    <ion-item>
+      <ion-label position="floating">Firma*</ion-label>
+      <ion-input autocomplete="off" type="text" formControlName="company"></ion-input>
+    </ion-item>
 
     <br>
 
-    <ion-input placeholder="Email*" autocomplete="off" type="text" formControlName="email"></ion-input>
-    <ion-input placeholder="Telefon" autocomplete="off" type="text" formControlName="phone"></ion-input>
-    <span>* Pflichteingabe</span>
+    <ion-item>
+      <ion-label position="floating">Firma*</ion-label>
+      <ion-input placeholder="Email*" autocomplete="off" type="text" formControlName="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Firma*</ion-label>
+      <ion-input placeholder="Telefon" autocomplete="off" type="text" formControlName="phone"></ion-input>
+    </ion-item>
+
+    
+    <div class="mandatory-info">* Pflichteingabe</div>
 
     <br>
     <ion-button color="primary" expand="full" type="submit" [disabled]="!signupFormGroup.valid">Profil Anlegen</ion-button>
