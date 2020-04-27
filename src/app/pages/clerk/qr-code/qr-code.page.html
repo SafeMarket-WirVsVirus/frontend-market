@@ -4,6 +4,7 @@
 
 <ion-content class="ion-padding">
   <zxing-scanner #scanner
+                 [enable]=false
                  (scanSuccess)="scanSuccessHandler($event)"
                  >
   </zxing-scanner>
