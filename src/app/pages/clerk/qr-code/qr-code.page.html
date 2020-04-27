@@ -7,6 +7,9 @@
                  (scanSuccess)="scanSuccessHandler($event)"
                  >
   </zxing-scanner>
+  <ion-button expand="full" (click)="toggleScanner($event)">
+    Scanner {{ scanner.enabled === true ? 'ausschalten' : 'einschalten' }}
+  </ion-button>
   <p>
     Code: {{code}}
   </p>
