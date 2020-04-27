@@ -8,9 +8,14 @@ import { AppHeaderComponent } from '../../../components/app-header/app-header.co
 })
 export class QrCodePage implements OnInit {
 
+  code:string;
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  scanSuccessHandler(payload:string) {
+    this.code = payload;
+  }
 }

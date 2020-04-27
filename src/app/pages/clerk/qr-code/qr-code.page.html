@@ -4,6 +4,11 @@
 
 <ion-content class="ion-padding">
   <zxing-scanner #scanner
+                 (scanSuccess)="scanSuccessHandler($event)"
                  >
   </zxing-scanner>
+  <p>
+    Code: {{code}}
+  </p>
+
 </ion-content>
