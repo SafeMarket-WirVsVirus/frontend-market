@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
+
 import { QrCodePageRoutingModule } from './qr-code-routing.module';
 
 import { QrCodePage } from './qr-code.page';
@@ -15,7 +17,8 @@ import { ComponentsModule } from 'src/app/components/components.module';
     FormsModule,
     IonicModule,
     QrCodePageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    ZXingScannerModule
   ],
   declarations: [
     QrCodePage,
