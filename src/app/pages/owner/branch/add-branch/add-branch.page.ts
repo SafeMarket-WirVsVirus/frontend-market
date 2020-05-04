@@ -75,6 +75,7 @@ export class AddBranchPage implements OnInit {
       this.stage1FormGroup.get('branchName').setValue(this.activeBranch.name);
       this.stage1FormGroup.get('street').setValue(this.activeBranch.address.street);
       this.stage1FormGroup.get('postCode').setValue(this.activeBranch.address.postcode);
+      this.stage1FormGroup.get('city').setValue(this.activeBranch.address.city);
 
       // Initialize Timeslot data
       this.weekSections = [
